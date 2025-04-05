@@ -1,0 +1,22 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "create an rds instance",
+    "Resources": {
+        "MyDBInstance": {
+            "Type": "AWS::RDS::DBInstance",
+            "Properties": {
+                "Engine": "mysql",
+                "EngineVersion": "8.0.33",
+                "DBInstanceIdentifier": "MyDB",
+                "MasterUsername": "Abhimanyu",
+                "MasterUserPassword": "Vishwajeet_1992",
+                "DBInstanceClass": "db.t4g.micro",
+                "StorageType": "gp2",
+                "AllocatedStorage": "20",
+                "PubliclyAccessible": false,
+                "DBName": "mydatabase"                
+            }
+        }
+    }
+
+}
