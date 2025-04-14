@@ -25,10 +25,24 @@
         url: "{{docker_compose_url}}"
         dest: "{{docker_compose_path}}"
         mode: 'u=rwx,g=rx,o=r'
-  
+
+    - name: install nginx app_server
+      package:
+        name: nginx
+        state: present
+      
+    - name: start and enable docker
+      service: 
+        name: nginx
+        state: started
+        enabled: yes
+
+         
   handlers:
     - name: restart docker
       service:
         name: docker
         state: restarted
+
+
 

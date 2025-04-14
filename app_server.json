@@ -8,6 +8,11 @@
             "DeviceName": "/dev/xvda",
             "Ebs": {
                 "VolumeSize": 15,
+
+
+
+
+                
                 "VolumeType": "gp3",
                 "DeleteOnTermination": true
             }
@@ -34,5 +39,4 @@
         }
     ]
 }
-
 

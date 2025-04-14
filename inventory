@@ -1,0 +1,11 @@
+[app_servers]
+13.203.203.213 ansible_user=ec2-user ansible_ssh_private_key_file=key.pem
+
+[db_server]
+43.204.237.109 ansible_user=ec2-user ansible_ssh_private_key_file=key.pem
+
+[rds-instance]
+51.205.371.109 ansible_user=ec2-user ansible_ssh_private_key_file=key.pem
+
+
+
