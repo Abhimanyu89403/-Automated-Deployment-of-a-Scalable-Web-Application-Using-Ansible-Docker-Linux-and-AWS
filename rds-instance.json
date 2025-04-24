@@ -10,6 +10,7 @@
                 "DBInstanceIdentifier": "MyDB",
                 "MasterUsername": "Abhimanyu",
                 "MasterUserPassword": "Vishwajeet_1992",
+                "SecurityGroupIds": "Take data from the output of SecurityGroup.json",
                 "DBInstanceClass": "db.t4g.micro",
                 "StorageType": "gp2",
                 "AllocatedStorage": "20",

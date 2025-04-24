@@ -1,0 +1,43 @@
+{
+    "AWSTemplateFormatVersion": "2019-09-09",
+    "Description": "create a security group",
+    "Resources": {
+        "app_server_sg": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "ALlow http/https traffic from public",
+                "VpcId": "vpc-055cafb653abbe6a9",
+                "SecurityGroupIngress": [
+                    {"IpProtocol": "TCP", "FromPort": 80, "ToPort": 80, "Cidrip": "MyIpAddress"},
+                    {"IpProtocol": "TCP", "FromPort": 443, "ToPort": 443, "Cidrip": "MyIpAddress"}                    
+                ]
+            }
+        },
+        "Mastersg": {
+            "Type":"AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow internal connection from own ip",
+                "VpcId": "vpc-055cafb653abbe6a9",
+                "SecurityGroupIngress": [
+                    {"IpProtocol": "SSH", "FromPort": 22, "ToPort": 22, "Cidrip": "MyIpAddress"}
+                ]
+            }
+        },
+
+        "SqlSg": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow msql access from ",
+                "VpcId":"vpc-055cafb653abbe6a9",
+                "SecurityGroupIngress": [
+                    {"IpProtocol": "Tcp", "FromPort":3306 , "ToPort": 3306, "SourceSecurityGroupId": {"Ref": "WebServersg"}},  //Source security group id allows all the traffic from the vms that have security group as app-serversg
+                    {"IpProtocol": "Tcp", "FromPort": 3306, "ToPort": 3306, "SourceSecurityGroupId": {"Ref": "Mastersg"}}  //Source security group id allows all the traffic from the vms that have security group as mastersg
+            }
+        }
+    }
+    "Outputs": {
+        "WebServersgID": {"Value": { "Ref": "Webserversg"}},
+        "MastersgID": {"Value": {"Ref": "mastersg"}},
+        "SqlSgID": {"Value": {"Ref": "SqlSg"}}
+    }
+}
