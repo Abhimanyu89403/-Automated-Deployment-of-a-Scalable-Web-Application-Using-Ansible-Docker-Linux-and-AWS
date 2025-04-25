@@ -1,0 +1,7 @@
+{
+    "RepositoryName": "Mydockerhub",
+    "ImageTagMutability": "Mutable",
+    "imageScanningSettings": {
+        "ScanOnPush": true
+    }
+}

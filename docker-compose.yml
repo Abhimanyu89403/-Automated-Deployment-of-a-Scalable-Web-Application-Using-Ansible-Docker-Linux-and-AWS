@@ -10,7 +10,7 @@ services:
     ports:
       - 3000:80
     volumes:
-      - node: /nodedata
+      - node:/nodedata
 
   db:
     image: mysql:8.0
@@ -20,7 +20,7 @@ services:
       MYSQL_USER: Abhi89403
       MYSQL_PASSWORD: **********
     volumes:
-      - db: /dbdata
+      - db:/dbdata
 
 
 volumes:
