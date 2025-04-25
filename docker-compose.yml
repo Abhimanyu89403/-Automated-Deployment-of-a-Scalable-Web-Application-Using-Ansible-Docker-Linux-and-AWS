@@ -1,0 +1,32 @@
+name: node
+networks:
+  nodenet:
+    driver: bridge
+
+services:
+  node:
+    image: node
+    restart: on-failure
+    ports:
+      - 3000:80
+    volumes:
+      - node: /nodedata
+
+  db:
+    image: mysql:8.0
+    restart: on-failure
+    environment:
+      MYSQL_DATABASE: MyDBInstance
+      MYSQL_USER: Abhi89403
+      MYSQL_PASSWORD: **********
+    volumes:
+      - db: /dbdata
+
+
+volumes:
+  node:
+  db:
+
+
+
+
