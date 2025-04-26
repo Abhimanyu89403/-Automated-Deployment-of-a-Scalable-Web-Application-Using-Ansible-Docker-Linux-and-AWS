@@ -5,3 +5,8 @@
         "ScanOnPush": true
     }
 }
+
+
+
+// docker build -t myapp . (create an image)
+// docker push app.dkr.ecr.ap-south-1.amazonaws.com/my-ecr-repo:v1  (push an image)
