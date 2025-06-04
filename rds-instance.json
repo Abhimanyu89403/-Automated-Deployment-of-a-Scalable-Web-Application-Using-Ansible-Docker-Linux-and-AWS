@@ -1,26 +1,38 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "IAM Role for EC2 service",
+  "Description": "Create an RDS MySQL instance",
+  "Parameters": {
+    "DBPassword": {
+      "Type": "String",
+      "NoEcho": true,
+      "Description": "The database master password"
+    },
+    "SecurityGroupId": {
+      "Type": "String",
+      "Description": "Security group ID for the DB instance"
+    }
+  },
   "Resources": {
-    "MyEC2ServiceRole": {
-      "Type": "AWS::IAM::Role",
+    "MyDBInstance": {
+      "Type": "AWS::RDS::DBInstance",
       "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "ec2.amazonaws.com"
-              },
-              "Action": "sts:AssumeRole"
-            }
-          ]
+        "Engine": "mysql",
+        "EngineVersion": "8.0.33",
+        "DBInstanceIdentifier": "MyDB",
+        "MasterUsername": "Abhimanyu",
+        "MasterUserPassword": {
+          "Ref": "DBPassword"
         },
-        "ManagedPolicyArns": [
-          "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+        "VPCSecurityGroups": [
+          {
+            "Ref": "SecurityGroupId"
+          }
         ],
-        "RoleName": "MyEC2ServiceRole"
+        "DBInstanceClass": "db.t4g.micro",
+        "StorageType": "gp2",
+        "AllocatedStorage": 20,
+        "PubliclyAccessible": false,
+        "DBName": "mydatabase"
       }
     }
   }
